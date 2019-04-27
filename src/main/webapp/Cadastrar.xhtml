@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title> Sua Locadora</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:messages style="color:red"></h:messages>
+            <p:fieldset legend="Cadastrar Filme">
+                <p:panelGrid columns="2">
+                    <h:outputLabel value="Título: "/>
+                    <p:inputText id="titulo" value="#{locadora.filme.titulo}" required="true" requiredMessage="Você deve informar o título">
+                        <f:validateLength minimum="5" maximum="30"/>
+                        <h:message for="titulo"/>
+                    </p:inputText>
+
+                    <h:outputLabel value="Nota: "/>
+                    <p:inputText id="nota" value="#{locadora.filme.nota}" required="true" converterMessage="Nota não pod ser vazia">
+                        <f:validateDoubleRange minimum="1" maximum="5"/>
+                        <f:convertNumber type="number"/>
+                        <h:message for="nota"/>
+                    </p:inputText>
+                    
+                    
+                    <h:outputLabel value="Data de Lançamento: "/>
+                    <p:inputText id="date" value="#{locadora.filme.data}" required="true" converterMessage="Data fora do formato dd/MM/yyyy">
+                        <f:convertDateTime parent="dd/MM/yyyy"/>
+                        <h:message for="data"/>
+                    </p:inputText>
+                    
+
+
+                    <h:outputLabel value="Descrição: "/>
+                    <p:inputText id="descricao" value="#{locadora.filme.descricao}" required="true" requiredMessage="Você deve informar alguma descrição">
+                        <f:validateLength minimum="10"/>
+                        <h:message for="titulo"/>
+                    </p:inputText>
+
+
+                    <h:outputLabel value="Quantidade: "/>
+                    <p:inputText id="quantidade" value="#{locadora.filme.quantidade}" required="true" >
+                        <f:validateDoubleRange minimum="1"/>
+                        <f:convertNumber type="number"/>
+                        <h:message for="quantidade"/>
+                    </p:inputText>
+
+                    
+                    <h:outputLabel value="Preco: "/>
+                    <p:inputText id="preco" value="" required="true" requiredMessage="Você deve informar alguma descrição">
+                        <f:validateDoubleRange minimum="1"/>
+                        <f:convertNumber type="number"/>
+                        <h:message for="titulo"/>
+                    </p:inputText>
+                    
+
+                </p:panelGrid>                              
+            </p:fieldset>
+
+
+        </h:form>
+
+    </h:body>
+</html>
+
