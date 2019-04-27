@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title> Cesta</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:fieldset legend="Seus Filmes">
+                <p:dataTable value="#{locadora.filmes}" var="filme">
+                    <p:column headerText="Id" sortBy="#{filme.id}">
+                        <f:facet name="header">Id</f:facet>
+                        <p:outputLabel value="#{filme.id}"/>
+                    </p:column>
+                    <p:column headerText="Título" sortBy="#{filme.titulo}">
+                        <f:facet name="header">Título</f:facet>
+                        <p:outputLabel value="#{filme.titulo}"/>
+                    </p:column>
+
+                    <p:column headerText="Descrição">
+                        <f:facet name="header">Deescrição</f:facet>
+                        <h:outputText value="#{filme.descricao}"></h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Data de Lançamento">
+                        <f:facet name="header">Data de Lançamento</f:facet>
+                        <h:outputText value="#{filme.data}"></h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Quantidade">
+                        <f:facet name="header">Quantidade</f:facet>
+                        <h:outputText value="#{filme.quantidade}"></h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Nota">
+                        <f:facet name="header">Nota</f:facet>
+                        <h:outputText value="#{filme.nota}"></h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Preço">    
+                        <f:facet name="header">Preco</f:facet>
+                        <h:outputText value="#{filme.preco}"></h:outputText>
+                    </p:column>
+                </p:dataTable>
+
+
+
+            </p:fieldset>
+
+
+        </h:form>
+
+    </h:body>
+</html>
+
