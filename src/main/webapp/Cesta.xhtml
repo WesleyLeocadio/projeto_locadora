@@ -10,7 +10,7 @@
     <h:body>
         <h:form>
             <p:fieldset legend="Seus Filmes">
-                <p:dataTable value="#{locadora.filmes}" var="filme">
+                <p:dataTable value="#{cesta.cesta}" var="filme">
                     <p:column headerText="Id" sortBy="#{filme.id}">
                         <f:facet name="header">Id</f:facet>
                         <p:outputLabel value="#{filme.id}"/>
@@ -32,7 +32,7 @@
 
                     <p:column headerText="Quantidade">
                         <f:facet name="header">Quantidade</f:facet>
-                        <h:outputText value="#{filme.quantidade}"></h:outputText>
+                        <h:outputText value="#{filme.qtdCesta}"></h:outputText>
                     </p:column>
 
                     <p:column headerText="Nota">
@@ -44,26 +44,36 @@
                         <f:facet name="header">Preco</f:facet>
                         <h:outputText value="#{filme.preco}"></h:outputText>
                     </p:column>
-                    
-                  
-                    <p:column>
+
+
+                    <p:column> 
                         <h:commandButton action="#{cesta.removerFilme(filme.id)}" value="Remover"/>
                     </p:column>
                 </p:dataTable>
-                
-                
+
+
                 <p:toolbar>
                     <p:toolbarGroup>
                         <h:commandButton action="Cadastrar.xhtml" value="Ver Loja" immediate="true"/>
-                        
+
                     </p:toolbarGroup>
                 </p:toolbar>
 
 
-
             </p:fieldset>
+           
 
-
+        </h:form>
+        <h:form>
+        <h1><h:outputText value="#{cesta.total}"/></h1>
+        <br/><br/><br/><br/>
+        <p:toolbar>
+            <p:toolbarGroup>
+                <h:commandButton action="#{cesta.finalizarCompra()}" value="Finalizar compras"/>
+                <h:commandButton action="#{cesta.limpar()}" value="Limpar" immediate="true"/>
+                <h:commandButton action="#{locadora.addFilme()}"  value="Sair" immediate="true"/>
+            </p:toolbarGroup>
+        </p:toolbar>
         </h:form>
 
     </h:body>
