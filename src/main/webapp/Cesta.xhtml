@@ -44,7 +44,19 @@
                         <f:facet name="header">Preco</f:facet>
                         <h:outputText value="#{filme.preco}"></h:outputText>
                     </p:column>
+                    
+                    <p:column>
+                        <h:commandButton action="" value="Remover"/>
+                    </p:column>
                 </p:dataTable>
+                
+                
+                <p:toolbar>
+                    <p:toolbarGroup>
+                        <h:commandButton action="Cadastrar.xhtml" value="Ver Loja" immediate="true"/>
+                        
+                    </p:toolbarGroup>
+                </p:toolbar>
 
 
 
