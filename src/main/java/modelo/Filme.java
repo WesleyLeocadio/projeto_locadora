@@ -34,6 +34,30 @@ public class Filme {
         this.id = cont++;
     }
 
+    public int getQtdCesta() {
+        return qtdCesta;
+    }
+
+    public void setQtdCesta(int qtdCesta) {
+        this.qtdCesta = qtdCesta;
+    }
+
+    public static int getCont() {
+        return cont;
+    }
+
+    public static void setCont(int cont) {
+        Filme.cont = cont;
+    }
+
+    public float getPreco() {
+        return preco;
+    }
+
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+
     public Filme() {
         this.id = cont++;
         this.qtdCesta = 0;

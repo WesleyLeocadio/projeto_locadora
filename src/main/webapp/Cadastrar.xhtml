@@ -24,14 +24,14 @@
                         <f:convertNumber type="number"/>
                         <h:message for="nota"/>
                     </p:inputText>
-                    
-                    
+
+
                     <h:outputLabel value="Data de Lançamento: "/>
                     <p:inputText id="date" value="#{locadora.filme.data}" required="true" converterMessage="Data fora do formato dd/MM/yyyy">
                         <f:convertDateTime parent="dd/MM/yyyy"/>
                         <h:message for="data"/>
                     </p:inputText>
-                    
+
 
 
                     <h:outputLabel value="Descrição: "/>
@@ -48,16 +48,24 @@
                         <h:message for="quantidade"/>
                     </p:inputText>
 
-                    
+
                     <h:outputLabel value="Preco: "/>
-                    <p:inputText id="preco" value="" required="true" requiredMessage="Você deve informar alguma descrição">
+                    <p:inputText id="preco" value="#{locadora.filme.preco}" required="true" requiredMessage="Você deve informar alguma descrição">
                         <f:validateDoubleRange minimum="1"/>
                         <f:convertNumber type="number"/>
                         <h:message for="titulo"/>
                     </p:inputText>
-                    
 
-                </p:panelGrid>                              
+
+                </p:panelGrid>  
+
+                <p:toolbar>
+                    <p:toolbarGroup>
+                        <h:commandButton action="#{locadora.addFilme()}" value="Cadastrar Filme"/>
+                        <h:commandButton  value="Ver cesta" immediate="true"/>
+                        <h:commandButton  value="Sair" immediate="true"/>
+                    </p:toolbarGroup>
+                </p:toolbar>
             </p:fieldset>
 
 
