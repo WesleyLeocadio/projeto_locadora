@@ -8,6 +8,12 @@
         <title> Sua Locadora</title>
     </h:head>
     <h:body>
+        <p:menubar>
+            <p:menuitem value="Home" url="Cadastar.xhtml"></p:menuitem>
+            <p:menuitem value="Cesta" url="Cadastar.xhtml"></p:menuitem>
+            <p:menuitem value="Sair" url="Cadastar.xhtml"></p:menuitem>
+
+        </p:menubar>
         <h:form>
             <h:messages style="color:red"></h:messages>
             <p:fieldset legend="Cadastrar Filme">
@@ -68,8 +74,36 @@
                 </p:toolbar>
             </p:fieldset>
 
-
         </h:form>
+
+
+        <br/><br/><br/>
+        <p:dataTable value="#{locadora.filmes}" var="filme">
+            <p:column headerText="Título" sortBy="#{filme.titulo}">
+                <h:outputText value="#{filme.titulo}"></h:outputText>
+            </p:column>
+
+            <p:column headerText="Descrição">
+                <h:outputText value="#{filme.descricao}"></h:outputText>
+            </p:column>
+
+            <p:column headerText="Data de Lançamento">
+                <h:outputText value="#{filme.data}"></h:outputText>
+            </p:column>
+
+            <p:column headerText="Quantidade">
+                <h:outputText value="#{filme.quantidade}"></h:outputText>
+            </p:column>
+
+            <p:column headerText="Nota">
+                <h:outputText value="#{filme.nota}"></h:outputText>
+            </p:column>
+
+            <p:column headerText="Preço">
+                <h:outputText value="#{filme.preco}"></h:outputText>
+            </p:column>
+        </p:dataTable>
+        <br/><br/><br/>
 
     </h:body>
 </html>
