@@ -56,15 +56,13 @@
                         <f:convertNumber type="number"/>
                         <h:message for="titulo"/>
                     </p:inputText>
-
-
                 </p:panelGrid>  
 
                 <p:toolbar>
                     <p:toolbarGroup>
                         <h:commandButton action="#{locadora.addFilme()}" value="Cadastrar Filme"/>
-                        <h:commandButton  value="Ver cesta" immediate="true"/>
-                        <h:commandButton  value="Sair" immediate="true"/>
+                        <h:commandButton action="Cesta.xhtml" value="Ver cesta" immediate="true"/>
+                        <h:commandButton action="#{locadora.addFilme()}"  value="Sair" immediate="true"/>
                     </p:toolbarGroup>
                 </p:toolbar>
             </p:fieldset>
@@ -97,6 +95,11 @@
             <p:column headerText="Preço">
                 <h:outputText value="#{filme.preco}"></h:outputText>
             </p:column>
+            
+            <p:column>
+                <h:commandButton action="#{cesta.addFilme(filme)}" value="Adicionar" disabled="#{filme.quantidade ==0}"/>
+            </p:column>
+            
         </p:dataTable>
         <br/><br/><br/>
 

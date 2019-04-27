@@ -45,8 +45,9 @@
                         <h:outputText value="#{filme.preco}"></h:outputText>
                     </p:column>
                     
+                  
                     <p:column>
-                        <h:commandButton action="" value="Remover"/>
+                        <h:commandButton action="#{cesta.removerFilme(filme.id)}" value="Remover"/>
                     </p:column>
                 </p:dataTable>
                 
