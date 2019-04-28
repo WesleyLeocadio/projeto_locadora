@@ -32,19 +32,9 @@ public class Locadora {
           FilmeDao filmesDao =  new FilmeDao();
 
     public Locadora() {
-        conexao.conecta();
         filme = new Filme();
-        Date date1 = new GregorianCalendar(2019, Calendar.JANUARY, 03).getTime();
-        Date date2 = new GregorianCalendar(2019, Calendar.JANUARY, 23).getTime();
-        Date date3 = new GregorianCalendar(2019, Calendar.MARCH, 11).getTime();
-
-        Filme f1 = new Filme("Titanic", date1, 3, "Filme ganhador de osca", 10, 5);
-        Filme f2 = new Filme("Alto da compadecida", date2, 9, "Filme ganhador de osca", 10, 4);
-        Filme f3 = new Filme("Mario o esquecido", date3, 2, "Filme bom", 10, 5);
-        filmes.add(f1);
-        filmes.add(f2);
-        filmes.add(f3);
-       
+        
+       filmes=filmesDao.listProduto();
     }
 
     public void addFilme() {

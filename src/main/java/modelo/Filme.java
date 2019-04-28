@@ -138,4 +138,11 @@ public class Filme {
         this.qtdCesta--;
     }
 
+    @Override
+    public String toString() {
+        return "Filme{" + "id=" + id + ", qtdCesta=" + qtdCesta + ", titulo=" + titulo + ", data=" + data + ", nota=" + nota + ", descricao=" + descricao + ", quantidade=" + quantidade + ", preco=" + preco + '}';
+    }
+    
+    
+
 }

@@ -20,7 +20,8 @@ public class testes {
     Conexao conexao =  new Conexao();
           FilmeDao filmesDao =  new FilmeDao();
             List<Filme> f;
-            
+            f=filmesDao.listProduto();
+            System.out.println(f.get(0));
             
     }
 }

@@ -19,9 +19,32 @@ import modelo.Filme;
 public class FilmeDao { 
         private final Conexao con = new Conexao();
             private final String LISTFILME= "SELECT * FROM FILME";
+    private final String INSERTCLIENTE = "INSERT INTO FILME (QTDCESTA,TITULO,DATA_LAN,NOTA,DESCRICAO,QUANTIDADE,PRECO) VALUES(0,'Velozes e furiozos','2002-02-05',5,'Ação',10,5)";
 
+    public boolean insertCliente() {
+        try {
+            // CONECTA
+            con.conecta();
 
-    
+            PreparedStatement preparaInstrucao;
+            preparaInstrucao = con.getConexao().prepareStatement(INSERTCLIENTE);
+
+           
+
+            // EXECUTA A INSTRUCAO
+            preparaInstrucao.execute();
+              
+            // DESCONECTA
+            con.desconecta();
+
+            return true;
+
+        } catch (SQLException e) {
+            return false;
+
+        }
+
+    }
     
     public ArrayList<Filme> listProduto() {
 		ArrayList<Filme> filmes = new ArrayList<>(); 
@@ -36,8 +59,8 @@ public class FilmeDao {
 			ResultSet rs = preparaInstrucao.executeQuery(); 
     			//TRATA O RETORNO DA CONSULTA
 			while (rs.next()) { //enquanto houver registro
-				Filme u = new Filme(rs.getInt("ID"),rs.getInt("QTDCESTA"),rs.getString("TITULO"),rs.getDate("DATA_LAN"),rs.getInt("NOTA"),rs.getString("DESCRICAO"),rs.getInt("QUANTIDADE"),rs.getFloat("PRECO"));
-				
+				Filme u = new Filme(rs.getInt("id"),rs.getInt("qtdcesta"),rs.getString("titulo"),rs.getDate("data_lan"),rs.getInt("nota"),rs.getString("descricao"),rs.getInt("quantidade"),rs.getFloat("preco"));
+				  System.out.println(u);
                                 filmes.add(u); 
 			}
 			// DESCONECTA
