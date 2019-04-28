@@ -5,6 +5,9 @@
  */
 package controle;
 
+import Dao.FilmeDao;
+import conexao.Conexao;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,8 +27,12 @@ public class Locadora {
 
     private Filme filme = new Filme();
     private List<Filme> filmes = new ArrayList<Filme>();
+    private List<Filme> f;
+    Conexao conexao =  new Conexao();
+          FilmeDao filmesDao =  new FilmeDao();
 
     public Locadora() {
+        conexao.conecta();
         filme = new Filme();
         Date date1 = new GregorianCalendar(2019, Calendar.JANUARY, 03).getTime();
         Date date2 = new GregorianCalendar(2019, Calendar.JANUARY, 23).getTime();
@@ -37,6 +44,7 @@ public class Locadora {
         filmes.add(f1);
         filmes.add(f2);
         filmes.add(f3);
+       
     }
 
     public void addFilme() {
@@ -61,5 +69,23 @@ public class Locadora {
     public void setFilmes(List<Filme> filmes) {
         this.filmes = filmes;
     }
+    
+    public void getConexao() {    
+        conexao.conecta();
+       
+    }   
+    public void getDesconectar() {    
+        conexao.desconecta();
+       
+    }   
+      public void getLIST() {    
+       f= filmesDao.listProduto();
+          for (int i = 0; i < f.size(); i++) {
+                     System.out.println(f.get(i));
+   
+          }
+    }   
+    
+    
 
 }

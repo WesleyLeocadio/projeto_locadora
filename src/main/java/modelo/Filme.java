@@ -23,6 +23,17 @@ public class Filme {
     private int quantidade;
     private float preco;
 
+    public Filme(int id, int qtdCesta, String titulo, Date data, int nota, String descricao, int quantidade, float preco) {
+        this.id = id;
+        this.qtdCesta = qtdCesta;
+        this.titulo = titulo;
+        this.data = data;
+        this.nota = nota;
+        this.descricao = descricao;
+        this.quantidade = quantidade;
+        this.preco = preco;
+    }
+
     public Filme(String titulo, Date data, int nota, String descricao, int quantidade, float preco) {
 
         this.titulo = titulo;
