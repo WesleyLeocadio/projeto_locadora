@@ -20,7 +20,8 @@ public class FilmeDao {
 
     private final Conexao con = new Conexao();
     private final String LISTFILME = "SELECT * FROM FILME";
-    private final String INSERTFILME = "INSERT INTO FILME (TITULO,DATA_LANCAMENTO,NOTA,DESCRICAO,QUANT,PRECO,QUANTCESTA) VALUES(?,?,?,?,?,?,?)";
+    private final String INSERTFILME = "INSERT INTO FILME (TITULO,DATA_LANCAMENTO,NOTA,DESCRICAO,QUANT) VALUES(?,?,?,?,?)";
+    private final String UPDATEQUANTIDADE = "UPDATE FILME SET QUANT = ? WHERE ID = ?";
 
     public boolean insertCliente(Filme u) {
         try {
@@ -35,8 +36,7 @@ public class FilmeDao {
             preparaInstrucao.setInt(3, u.getNota());
             preparaInstrucao.setString(4, u.getDescricao());
             preparaInstrucao.setInt(5, u.getQuantidade());
-            preparaInstrucao.setFloat(6, u.getPreco());
-            preparaInstrucao.setInt(7, 0);
+     
             // EXECUTA A INSTRUCAO
             preparaInstrucao.execute();
             System.out.println("inseriu");
@@ -51,6 +51,40 @@ public class FilmeDao {
         }
 
     }
+    
+    
+    
+    public boolean updateQuantidade(int u, int id) {
+		try {
+			// CONECTA
+			con.conecta();
+                        PreparedStatement preparaInstrucao;
+			preparaInstrucao = con.getConexao().prepareStatement(UPDATEQUANTIDADE);
+			// SETA OS VALORES DA INSTRUCAO
+			// OBS: PASSA OS PARAMETROS NA ORDEM DAS ? DA INSTRUCAO
+			preparaInstrucao.setInt(1, u);
+    			preparaInstrucao.setInt(2, id);
+                        
+			// EXECUTA A INSTRUCAO
+			preparaInstrucao.execute();
+                        System.out.println("atualizaou a quantidade");
+
+			// DESCONECTA
+			con.desconecta();
+			
+			return true;
+
+		} catch (SQLException e) {
+			return false;
+
+		}
+                
+    
+    }
+    
+    
+    
+    
 
     public ArrayList<Filme> listProduto() {
         ArrayList<Filme> filmes = new ArrayList<>();
@@ -65,7 +99,7 @@ public class FilmeDao {
             ResultSet rs = preparaInstrucao.executeQuery();
             //TRATA O RETORNO DA CONSULTA
             while (rs.next()) { //enquanto houver registro
-                Filme u = new Filme(rs.getInt("id"), rs.getString("titulo"), rs.getString("data_lancamento"), rs.getInt("nota"), rs.getString("descricao"), rs.getInt("quant"), rs.getFloat("preco"), rs.getInt("quantcesta"));
+                Filme u = new Filme(rs.getInt("id"), rs.getString("titulo"), rs.getString("data_lancamento"), rs.getInt("nota"), rs.getString("descricao"), rs.getInt("quant"));
                 System.out.println(u);
                 filmes.add(u);
             }
@@ -78,38 +112,4 @@ public class FilmeDao {
         return filmes;
     }
     
-     
-    //Tenta encontrar um filme
-    public Filme encontrar(int id) {
-        con.conecta();
-        String query = " SELECT * FROM filme where id =?";
-        try {
-
-            PreparedStatement pst = con.getConexao().prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                int x = rs.getInt(1);
-                if (x == id) {
-                    System.out.println("FILME ENCONTRADO");
-                    Filme f = new Filme();
-                    f.setId(rs.getInt(1));
-                    f.setTitulo(rs.getString(2));
-                    f.setString(rs.getDate(3));
-                    f.setNota(rs.getInt(4));
-                    f.setDescricao(rs.getString(5));
-                    f.setQuantidade(rs.getInt(6));
-
-                    return f;
-                }
-            }
-        } catch (SQLException ex) {
-            System.out.println("LoginFromVendedor não deu certo");
-            //Logger.getLogger(VendedorDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println("Vendedor não foi encontrado");
-        con.desconecta();
-        return null;
-    }
-
-
 }

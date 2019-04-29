@@ -19,28 +19,24 @@ public class Filme {
     private int nota;
     private String descricao;
     private int quantidade;
-    private float preco;
-    private int quantcesta;
+    
 
-    public Filme(int id, String titulo, String data, int nota, String descricao, int quantidade, float preco, int quantcesta) {
+    public Filme(int id, String titulo, String data, int nota, String descricao, int quantidade) {
         this.id = id;
         this.titulo = titulo;
         this.data = data;
         this.nota = nota;
         this.descricao = descricao;
         this.quantidade = quantidade;
-        this.preco = preco;
-        this.quantcesta = quantcesta;
+      
     }
 
-    public Filme(String titulo, String data, int nota, String descricao, int quantidade, float preco, int quantcesta) {
+    public Filme(String titulo, String data, int nota, String descricao, int quantidade) {
         this.titulo = titulo;
         this.data = data;
         this.nota = nota;
         this.descricao = descricao;
         this.quantidade = quantidade;
-        this.preco = preco;
-        this.quantcesta = quantcesta;
     }
     
 
@@ -98,31 +94,6 @@ public class Filme {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
-
-    public float getPreco() {
-        return preco;
-    }
-
-    public void setPreco(float preco) {
-        this.preco = preco;
-    }
-
-    public int getQuantcesta() {
-        return quantcesta;
-    }
-
-    public void setQuantcesta(int quantcesta) {
-        this.quantcesta = quantcesta;
-    }
-
-
-
-
-
-
-
-
-
 
 
 

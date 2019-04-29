@@ -5,10 +5,12 @@
  */
 package controle;
 
+import Dao.FilmeDao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.swing.JOptionPane;
 import modelo.Filme;
 
 /**
@@ -20,7 +22,19 @@ import modelo.Filme;
 public class Cesta {
 
     private List<Filme> cesta = new ArrayList<Filme>();
+    
+    FilmeDao filmesDao =  new FilmeDao();
+    
+    private int quantidadeCesta;
 
+    public int getQuantidadeCesta() {
+        return quantidadeCesta;
+    }
+
+    public void setQuantidadeCesta(int quantidadeCesta) {
+        this.quantidadeCesta = quantidadeCesta;
+    }
+    
     private float total;
 
     public List<Filme> getCesta() {
@@ -39,34 +53,28 @@ public class Cesta {
         this.total = total;
     }
 
-    public Filme pegarFilme(int id) {
-       Filme ff = null;
-//        for (Filme f : cesta) {
-//            if (f.getId() == id) {
-//                return f;
-//            }
-//        }
-        return ff;
-    }
+    
 
     public void addFilme(Filme f) {
-//        if (pegarFilme(f.getId()) != null) {
-//            f.setQtdCesta(f.getQtdCesta() + 1);
-//            f.diminuiEstoque();
-//        } else {
-//            if (f.getQuantidade() > 1) {
-//                f.setQtdCesta(1);
-//                cesta.add(f);
-//                f.diminuiEstoque();
-//            }
-//        }
-   
-           cesta.add(f);
-           for (int i = 0; i < cesta.size(); i++) {
-               System.out.println(cesta.get(i));
+        int q;
+            if (f.getQuantidade() > 1) {
+                quantidadeCesta++;
+                
+                q=f.getQuantidade();
+                q--;
+                filmesDao.updateQuantidade(q, f.getId());
+                cesta.add(f);
+                
+            }else{
+            
+                System.out.println(" Não tem mais filmes");
+            }
         }
+    
+           
+           
   
-    }
+    
 
     public void removerFilme(int id) {
 
