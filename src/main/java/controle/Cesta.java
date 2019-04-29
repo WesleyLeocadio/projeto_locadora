@@ -21,11 +21,28 @@ import modelo.Filme;
 @SessionScoped
 public class Cesta {
 
+    private float valor;
     private List<Filme> cesta = new ArrayList<Filme>();
-    
-    FilmeDao filmesDao =  new FilmeDao();
-    
-    private int quantidadeCesta;
+    FilmeDao filmesDao = new FilmeDao();
+    Filme filme;
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+
+    public FilmeDao getFilmesDao() {
+        return filmesDao;
+    }
+
+    public void setFilmesDao(FilmeDao filmesDao) {
+        this.filmesDao = filmesDao;
+    }
+
+    private int quantidadeCesta=0;
 
     public int getQuantidadeCesta() {
         return quantidadeCesta;
@@ -34,8 +51,6 @@ public class Cesta {
     public void setQuantidadeCesta(int quantidadeCesta) {
         this.quantidadeCesta = quantidadeCesta;
     }
-    
-    private float total;
 
     public List<Filme> getCesta() {
         return cesta;
@@ -44,72 +59,46 @@ public class Cesta {
     public void setCesta(List<Filme> cesta) {
         this.cesta = cesta;
     }
-
-    public float getTotal() {
-        return total;
-    }
-
-    public void setTotal(float total) {
-        this.total = total;
-    }
-
-    
+    int q = 0;
 
     public void addFilme(Filme f) {
-        int q;
-            if (f.getQuantidade() > 1) {
-                quantidadeCesta++;
-                
-                q=f.getQuantidade();
-                q--;
-                filmesDao.updateQuantidade(q, f.getId());
-                cesta.add(f);
-                
-            }else{
+       
+         System.out.println("Quantidade add antes: "+f.getQuantidade());
+            quantidadeCesta++;
+            q--;
+            filmesDao.updateQuantidade(f.getQuantidade()-1, f.getId());
+            f.setQuantidade(f.getQuantidade()-1);
+            cesta.add(f);
+
+    }
+
+    public void removerFilme(Filme f) {
+
+        quantidadeCesta--;
+        
+        filmesDao.updateQuantidade(f.getQuantidade()+1, f.getId());
+        f.setQuantidade(f.getQuantidade()+1);
+        cesta.remove(f);
+    }
+
+    public void limpar() {
+
+        for (int i = 0; i < cesta.size(); i++) {
+
+             filmesDao.updateQuantidade(cesta.get(i).getQuantidade()+1, cesta.get(i).getId());
             
-                System.out.println(" Não tem mais filmes");
-            }
+        
+            cesta.remove(filme);
+
         }
-    
-           
-           
-  
-    
-
-    public void removerFilme(int id) {
-
-//        Filme f = pegarFilme(id);
-//        if (f.getQtdCesta() > 1) {
-//            f.incrementaEstoque();
-//            f.setQtdCesta(f.getQtdCesta() - 1);
-//        } else {
-//            cesta.remove(f);
-//            f.incrementaEstoque();
-//        }
-
+        quantidadeCesta=0;
+        cesta = new ArrayList<>();
+        valor = 0;
     }
-    
-    
-    
-    public void limpar(){
-    
-//        for (int i = 0; i <cesta.size(); i++) {
-//            cesta.get(i).setQuantidade(cesta.get(i).getQtdCesta()+cesta.get(i).getQuantidade());
-//            cesta.get(i).setQtdCesta(0);
-//        }
-//        
-//        total = 0;
-//        cesta =  new ArrayList<>();
+
+    public void finalizarCompra() {
+
+        valor = quantidadeCesta * 5;
     }
-    
-    
-    
-    public void finalizarCompra(){
-    
-//        for (int i = 0; i < cesta.size(); i++) {
-//            for (int j = 0; j < cesta.get(i).getQtdCesta; j++) {
-//                total+=cesta.get(i).getPreco();
-//            }
-//        }
-    }
+
 }
