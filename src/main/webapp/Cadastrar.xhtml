@@ -47,6 +47,13 @@
                         <h:message for="quantidade"/>
                     </p:inputText>
 
+                    <h:outputLabel value="Preço: "/>
+                    <p:inputText id="preco" value="#{locadora.filme.preco}" required="true" >
+                        <f:validateDoubleRange minimum="1"/>
+                        <f:convertNumber type="number"/>
+                        <h:message for="preco"/>
+                    </p:inputText>
+
                 </p:panelGrid>  
 
                 <p:toolbar>
@@ -80,6 +87,10 @@
 
                 <p:column headerText="Nota">
                     <h:outputText value="#{filme.nota}"></h:outputText>
+                </p:column>
+
+                  <p:column headerText="Preço">
+                      <h:outputText value="#{filme.preco}"></h:outputText>
                 </p:column>
 
 

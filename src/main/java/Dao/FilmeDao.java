@@ -20,7 +20,7 @@ public class FilmeDao {
 
     private final Conexao con = new Conexao();
     private final String LISTFILME = "SELECT * FROM FILME";
-    private final String INSERTFILME = "INSERT INTO FILME (TITULO,DATA_LANCAMENTO,NOTA,DESCRICAO,QUANT) VALUES(?,?,?,?,?)";
+    private final String INSERTFILME = "INSERT INTO FILME (TITULO,DATA_LANCAMENTO,NOTA,DESCRICAO,QUANT,PRECO,QUANTCESTA) VALUES(?,?,?,?,?,?,?)";
 
     public boolean insertCliente(Filme u) {
         try {
@@ -35,6 +35,8 @@ public class FilmeDao {
             preparaInstrucao.setInt(3, u.getNota());
             preparaInstrucao.setString(4, u.getDescricao());
             preparaInstrucao.setInt(5, u.getQuantidade());
+            preparaInstrucao.setFloat(6, u.getPreco());
+            preparaInstrucao.setInt(7, 0);
             // EXECUTA A INSTRUCAO
             preparaInstrucao.execute();
             System.out.println("inseriu");
@@ -63,7 +65,7 @@ public class FilmeDao {
             ResultSet rs = preparaInstrucao.executeQuery();
             //TRATA O RETORNO DA CONSULTA
             while (rs.next()) { //enquanto houver registro
-                Filme u = new Filme(rs.getInt("id"), rs.getString("titulo"), rs.getString("data_lancamento"), rs.getInt("nota"), rs.getString("descricao"), rs.getInt("quant"));
+                Filme u = new Filme(rs.getInt("id"), rs.getString("titulo"), rs.getString("data_lancamento"), rs.getInt("nota"), rs.getString("descricao"), rs.getInt("quant"), rs.getFloat("preco"), rs.getInt("quantcesta"));
                 System.out.println(u);
                 filmes.add(u);
             }
