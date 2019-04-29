@@ -40,38 +40,40 @@ public class Cesta {
     }
 
     public Filme pegarFilme(int id) {
-        Filme ff = null;
-        for (Filme f : cesta) {
-            if (f.getId() == id) {
-                return f;
-            }
-        }
+       Filme ff = null;
+//        for (Filme f : cesta) {
+//            if (f.getId() == id) {
+//                return f;
+//            }
+//        }
         return ff;
     }
 
     public void addFilme(Filme f) {
-        if (pegarFilme(f.getId()) != null) {
-            f.setQtdCesta(f.getQtdCesta() + 1);
-            f.diminuiEstoque();
-        } else {
-            if (f.getQuantidade() > 1) {
-                f.setQtdCesta(1);
-                cesta.add(f);
-                f.diminuiEstoque();
-            }
-        }
+//        if (pegarFilme(f.getId()) != null) {
+//            f.setQtdCesta(f.getQtdCesta() + 1);
+//            f.diminuiEstoque();
+//        } else {
+//            if (f.getQuantidade() > 1) {
+//                f.setQtdCesta(1);
+//                cesta.add(f);
+//                f.diminuiEstoque();
+//            }
+//        }
+   
+  
     }
 
     public void removerFilme(int id) {
 
-        Filme f = pegarFilme(id);
-        if (f.getQtdCesta() > 1) {
-            f.incrementaEstoque();
-            f.setQtdCesta(f.getQtdCesta() - 1);
-        } else {
-            cesta.remove(f);
-            f.incrementaEstoque();
-        }
+//        Filme f = pegarFilme(id);
+//        if (f.getQtdCesta() > 1) {
+//            f.incrementaEstoque();
+//            f.setQtdCesta(f.getQtdCesta() - 1);
+//        } else {
+//            cesta.remove(f);
+//            f.incrementaEstoque();
+//        }
 
     }
     
@@ -79,23 +81,23 @@ public class Cesta {
     
     public void limpar(){
     
-        for (int i = 0; i <cesta.size(); i++) {
-            cesta.get(i).setQuantidade(cesta.get(i).getQtdCesta()+cesta.get(i).getQuantidade());
-            cesta.get(i).setQtdCesta(0);
-        }
-        
-        total = 0;
-        cesta =  new ArrayList<>();
+//        for (int i = 0; i <cesta.size(); i++) {
+//            cesta.get(i).setQuantidade(cesta.get(i).getQtdCesta()+cesta.get(i).getQuantidade());
+//            cesta.get(i).setQtdCesta(0);
+//        }
+//        
+//        total = 0;
+//        cesta =  new ArrayList<>();
     }
     
     
     
     public void finalizarCompra(){
     
-        for (int i = 0; i < cesta.size(); i++) {
-            for (int j = 0; j < cesta.get(i).getQtdCesta(); j++) {
-                total+=cesta.get(i).getPreco();
-            }
-        }
+//        for (int i = 0; i < cesta.size(); i++) {
+//            for (int j = 0; j < cesta.get(i).getQtdCesta; j++) {
+//                total+=cesta.get(i).getPreco();
+//            }
+//        }
     }
 }

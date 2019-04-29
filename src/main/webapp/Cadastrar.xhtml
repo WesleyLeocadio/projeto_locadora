@@ -8,7 +8,7 @@
         <title> Sua Locadora</title>
     </h:head>
     <h:body>
-        
+
         <h:form>
             <h:messages style="color:red"></h:messages>
             <p:fieldset legend="Cadastrar Filme">
@@ -28,10 +28,8 @@
 
 
                     <h:outputLabel value="Data de Lançamento: "/>
-                    <p:inputText id="date" value="#{locadora.filme.data}" required="true" converterMessage="Data fora do formato dd/MM/yyyy">
-                        <f:convertDateTime parent="dd/MM/yyyy"/>
-                        <h:message for="data"/>
-                    </p:inputText>
+                    <p:inputMask  mask="99/99/9999"  value="#{locadora.filme.data}" required="true" converterMessage="Data fora do formato dd/MM/yyyy"> 
+                    </p:inputMask>
 
 
 
@@ -49,13 +47,6 @@
                         <h:message for="quantidade"/>
                     </p:inputText>
 
-
-                    <h:outputLabel value="Preco: "/>
-                    <p:inputText id="preco" value="#{locadora.filme.preco}" required="true" requiredMessage="Você deve informar alguma descrição">
-                        <f:validateDoubleRange minimum="1"/>
-                        <f:convertNumber type="number"/>
-                        <h:message for="titulo"/>
-                    </p:inputText>
                 </p:panelGrid>  
 
                 <p:toolbar>
@@ -69,39 +60,37 @@
         </h:form>
 
         <h:form>
-        <br/><br/><br/>
-        <p:dataTable value="#{locadora.filmes}" var="filme">
-            <p:column headerText="Título" sortBy="#{filme.titulo}">
-                <h:outputText value="#{filme.titulo}"></h:outputText>
-            </p:column>
+            <br/><br/><br/>
+            <p:dataTable value="#{locadora.filmes}" var="filme">
+                <p:column headerText="Título" sortBy="#{filme.titulo}">
+                    <h:outputText value="#{filme.titulo}"></h:outputText>
+                </p:column>
 
-            <p:column headerText="Descrição">
-                <h:outputText value="#{filme.descricao}"></h:outputText>
-            </p:column>
+                <p:column headerText="Descrição">
+                    <h:outputText value="#{filme.descricao}"></h:outputText>
+                </p:column>
 
-            <p:column headerText="Data de Lançamento">
-                <h:outputText value="#{filme.data}"></h:outputText>
-            </p:column>
+                <p:column headerText="Data de Lançamento">
+                    <h:outputText value="#{filme.data}"></h:outputText>
+                </p:column>
 
-            <p:column headerText="Quantidade">
-                <h:outputText value="#{filme.quantidade}"></h:outputText>
-            </p:column>
+                <p:column headerText="Quantidade">
+                    <h:outputText value="#{filme.quantidade}"></h:outputText>
+                </p:column>
 
-            <p:column headerText="Nota">
-                <h:outputText value="#{filme.nota}"></h:outputText>
-            </p:column>
+                <p:column headerText="Nota">
+                    <h:outputText value="#{filme.nota}"></h:outputText>
+                </p:column>
 
-            <p:column headerText="Preço">
-                <h:outputText value="#{filme.preco}"></h:outputText>
-            </p:column>
-            
-            <p:column>
-                <h:commandButton action="#{cesta.addFilme(filme)}" value="Adicionar" disabled="#{filme.quantidade ==0}"/>
-            </p:column>
-            
-        </p:dataTable>
-        <br/><br/><br/>
- </h:form>
+
+
+                <p:column>
+                    <h:commandButton action="#{cesta.addFilme(filme)}" value="Adicionar" disabled="#{filme.quantidade ==0}"/>
+                </p:column>
+
+            </p:dataTable>
+            <br/><br/><br/>
+        </h:form>
     </h:body>
 </html>
 

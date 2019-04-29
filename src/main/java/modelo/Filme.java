@@ -14,64 +14,34 @@ import java.util.Date;
 public class Filme {
 
     private int id;
-    private int qtdCesta;
-    private static int cont = 0;
     private String titulo;
-    private Date data;
+    private String data;
     private int nota;
     private String descricao;
     private int quantidade;
-    private float preco;
+    
 
-    public Filme(int id, int qtdCesta, String titulo, Date data, int nota, String descricao, int quantidade, float preco) {
+    public Filme(int id, String titulo, String data, int nota, String descricao, int quantidade) {
         this.id = id;
-        this.qtdCesta = qtdCesta;
         this.titulo = titulo;
         this.data = data;
         this.nota = nota;
         this.descricao = descricao;
         this.quantidade = quantidade;
-        this.preco = preco;
     }
 
-    public Filme(String titulo, Date data, int nota, String descricao, int quantidade, float preco) {
+    public Filme(String titulo, String data, int nota, String descricao, int quantidade) {
 
         this.titulo = titulo;
         this.data = data;
         this.nota = nota;
         this.descricao = descricao;
         this.quantidade = quantidade;
-        this.preco = preco;
-        this.id = cont++;
-    }
-
-    public int getQtdCesta() {
-        return qtdCesta;
-    }
-
-    public void setQtdCesta(int qtdCesta) {
-        this.qtdCesta = qtdCesta;
-    }
-
-    public static int getCont() {
-        return cont;
-    }
-
-    public static void setCont(int cont) {
-        Filme.cont = cont;
-    }
-
-    public float getPreco() {
-        return preco;
-    }
-
-    public void setPreco(float preco) {
-        this.preco = preco;
+        
     }
 
     public Filme() {
-        this.id = cont++;
-        this.qtdCesta = 0;
+      
     }
 
     public int getId() {
@@ -90,11 +60,11 @@ public class Filme {
         this.titulo = titulo;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -130,19 +100,12 @@ public class Filme {
         this.quantidade--;
     }
 
-    public void incrementaCesta() {
-        this.qtdCesta++;
-    }
-
-    public void diminuiCesta() {
-        this.qtdCesta--;
-    }
-
     @Override
     public String toString() {
-        return "Filme{" + "id=" + id + ", qtdCesta=" + qtdCesta + ", titulo=" + titulo + ", data=" + data + ", nota=" + nota + ", descricao=" + descricao + ", quantidade=" + quantidade + ", preco=" + preco + '}';
+        return "Filme{" + "id=" + id + ", titulo=" + titulo + ", data=" + data + ", nota=" + nota + ", descricao=" + descricao + ", quantidade=" + quantidade + '}';
     }
-    
+
+
     
 
 }
