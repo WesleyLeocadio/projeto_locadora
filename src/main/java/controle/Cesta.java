@@ -61,6 +61,10 @@ public class Cesta {
 //            }
 //        }
    
+           cesta.add(f);
+           for (int i = 0; i < cesta.size(); i++) {
+               System.out.println(cesta.get(i));
+        }
   
     }
 

@@ -9,9 +9,7 @@ import conexao.Conexao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import modelo.Filme;
 
 /**
@@ -77,5 +75,39 @@ public class FilmeDao {
         ///////////////////Collections.sort(lista);/////////////////////////
         return filmes;
     }
+    
+     
+    //Tenta encontrar um filme
+    public Filme encontrar(int id) {
+        con.conecta();
+        String query = " SELECT * FROM filme where id =?";
+        try {
+
+            PreparedStatement pst = con.getConexao().prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int x = rs.getInt(1);
+                if (x == id) {
+                    System.out.println("FILME ENCONTRADO");
+                    Filme f = new Filme();
+                    f.setId(rs.getInt(1));
+                    f.setTitulo(rs.getString(2));
+                    f.setString(rs.getDate(3));
+                    f.setNota(rs.getInt(4));
+                    f.setDescricao(rs.getString(5));
+                    f.setQuantidade(rs.getInt(6));
+
+                    return f;
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("LoginFromVendedor não deu certo");
+            //Logger.getLogger(VendedorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("Vendedor não foi encontrado");
+        con.desconecta();
+        return null;
+    }
+
 
 }
