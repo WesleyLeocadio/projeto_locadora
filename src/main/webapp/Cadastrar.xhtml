@@ -3,48 +3,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+            xmlns:f2="http://java.sun.com/jsf/core"
+>
     <h:head>
         <title> Sua Locadora</title>
     </h:head>
     <h:body>
 
         <h:form>
-            <h:messages style="color:red"></h:messages>
+            <p:messages style="color:red"></p:messages>
             <p:fieldset legend="Cadastrar Filme">
                 <p:panelGrid columns="2">
                     <h:outputLabel value="Título: "/>
                     <p:inputText id="titulo" value="#{locadora.filme.titulo}" required="true" requiredMessage="Você deve informar o título">
-                        <f:validateLength minimum="5" maximum="30"/>
-                        <h:message for="titulo"/>
                     </p:inputText>
 
                     <h:outputLabel value="Nota: "/>
-                    <p:inputText id="nota" value="#{locadora.filme.nota}" required="true" converterMessage="Nota não pod ser vazia">
+                    <p:inputText id="nota" value="#{locadora.filme.nota}" required="true" requiredMessage="A nota deve ser um inteiro de 1 até 5">
                         <f:validateDoubleRange minimum="1" maximum="5"/>
                         <f:convertNumber type="number"/>
-                        <h:message for="nota"/>
                     </p:inputText>
 
+                    <p:outputLabel value="Data de lançamento: " />
+                    <p:inputMask mask="99/99/9999"  id="fDate" value="#{locadora.filme.data}" 
+                                 requiredMessage="Formato de data inválido">
+                        <f2:convertDateTime pattern="dd/MM/yyyy" for="fData" />
 
-                    <h:outputLabel value="Data de Lançamento: "/>
-                    <p:inputMask  mask="99/99/9999"  value="#{locadora.filme.data}" required="true" converterMessage="Data fora do formato dd/MM/yyyy"> 
                     </p:inputMask>
+                  
 
 
 
                     <h:outputLabel value="Descrição: "/>
                     <p:inputText id="descricao" value="#{locadora.filme.descricao}" required="true" requiredMessage="Você deve informar alguma descrição">
                         <f:validateLength minimum="10"/>
-                        <h:message for="titulo"/>
                     </p:inputText>
 
 
                     <h:outputLabel value="Quantidade: "/>
-                    <p:inputText id="quantidade" value="#{locadora.filme.quantidade}" required="true" >
+                    <p:inputText id="quantidade" value="#{locadora.filme.quantidade}" required="true" requiredMessage="Quantidade tem que ser maior que zero" >
                         <f:validateDoubleRange minimum="1"/>
                         <f:convertNumber type="number"/>
-                        <h:message for="quantidade"/>
                     </p:inputText>
 
                     
@@ -55,7 +55,7 @@
                     <p:toolbarGroup>
                         <h:commandButton action="#{locadora.addFilme()}" value="Cadastrar Filme"/>
                         <h:commandButton action="Cesta.xhtml" value="Ver cesta" immediate="true"/>
-                        <h:commandButton action="#{locadora.getLIST()}"  value="Sair" immediate="true"/>
+                        <h:commandButton action="#{locadora.getLIST()}"  value="Cancelar" immediate="true"/>
                     </p:toolbarGroup>
                 </p:toolbar>
             </p:fieldset>

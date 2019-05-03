@@ -27,16 +27,18 @@ public class FilmeDao {
         try {
             // CONECTA
             con.conecta();
-           
+
             PreparedStatement preparaInstrucao;
             preparaInstrucao = con.getConexao().prepareStatement(INSERTFILME);
             System.out.println("Titulo: " + u.getTitulo() + " Data: " + u.getData() + " nota: " + u.getNota() + " descricao " + u.getDescricao());
             preparaInstrucao.setString(1, u.getTitulo());
-            preparaInstrucao.setString(2, u.getData());
+            u.setData(new java.util.Date());
+            java.sql.Date dataSql = new java.sql.Date(u.getData().getTime());
+            preparaInstrucao.setDate(2, dataSql);
             preparaInstrucao.setInt(3, u.getNota());
             preparaInstrucao.setString(4, u.getDescricao());
             preparaInstrucao.setInt(5, u.getQuantidade());
-     
+
             // EXECUTA A INSTRUCAO
             preparaInstrucao.execute();
             System.out.println("inseriu");
@@ -51,40 +53,33 @@ public class FilmeDao {
         }
 
     }
-    
-    
-    
+
     public boolean updateQuantidade(int u, int id) {
-		try {
-			// CONECTA
-			con.conecta();
-                        PreparedStatement preparaInstrucao;
-			preparaInstrucao = con.getConexao().prepareStatement(UPDATEQUANTIDADE);
-			// SETA OS VALORES DA INSTRUCAO
-			// OBS: PASSA OS PARAMETROS NA ORDEM DAS ? DA INSTRUCAO
-			preparaInstrucao.setInt(1, u);
-    			preparaInstrucao.setInt(2, id);
-                        
-			// EXECUTA A INSTRUCAO
-			preparaInstrucao.execute();
-                        System.out.println("atualizaou a quantidade");
+        try {
+            // CONECTA
+            con.conecta();
+            PreparedStatement preparaInstrucao;
+            preparaInstrucao = con.getConexao().prepareStatement(UPDATEQUANTIDADE);
+            // SETA OS VALORES DA INSTRUCAO
+            // OBS: PASSA OS PARAMETROS NA ORDEM DAS ? DA INSTRUCAO
+            preparaInstrucao.setInt(1, u);
+            preparaInstrucao.setInt(2, id);
 
-			// DESCONECTA
-			con.desconecta();
-			
-			return true;
+            // EXECUTA A INSTRUCAO
+            preparaInstrucao.execute();
+            System.out.println("atualizaou a quantidade");
 
-		} catch (SQLException e) {
-			return false;
+            // DESCONECTA
+            con.desconecta();
 
-		}
-                
-    
+            return true;
+
+        } catch (SQLException e) {
+            return false;
+
+        }
+
     }
-    
-    
-    
-    
 
     public ArrayList<Filme> listProduto() {
         ArrayList<Filme> filmes = new ArrayList<>();
@@ -99,7 +94,7 @@ public class FilmeDao {
             ResultSet rs = preparaInstrucao.executeQuery();
             //TRATA O RETORNO DA CONSULTA
             while (rs.next()) { //enquanto houver registro
-                Filme u = new Filme(rs.getInt("id"), rs.getString("titulo"), rs.getString("data_lancamento"), rs.getInt("nota"), rs.getString("descricao"), rs.getInt("quant"));
+                Filme u = new Filme(rs.getInt("id"), rs.getString("titulo"), rs.getDate("data_lancamento"), rs.getInt("nota"), rs.getString("descricao"), rs.getInt("quant"));
                 System.out.println(u);
                 filmes.add(u);
             }
@@ -111,5 +106,5 @@ public class FilmeDao {
         ///////////////////Collections.sort(lista);/////////////////////////
         return filmes;
     }
-    
+
 }

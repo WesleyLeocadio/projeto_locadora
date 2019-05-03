@@ -15,36 +15,31 @@ public class Filme {
 
     private int id;
     private String titulo;
-    private String data;
+    private Date data;
     private int nota;
     private String descricao;
     private int quantidade;
-    
 
-    public Filme(int id, String titulo, String data, int nota, String descricao, int quantidade) {
+    public Filme(int id, String titulo, Date data, int nota, String descricao, int quantidade) {
         this.id = id;
         this.titulo = titulo;
         this.data = data;
         this.nota = nota;
         this.descricao = descricao;
         this.quantidade = quantidade;
-      
+
     }
 
-    public Filme(String titulo, String data, int nota, String descricao, int quantidade) {
+    public Filme(String titulo, Date data, int nota, String descricao, int quantidade) {
         this.titulo = titulo;
         this.data = data;
         this.nota = nota;
         this.descricao = descricao;
         this.quantidade = quantidade;
     }
-    
-
-   
-
 
     public Filme() {
-      
+
     }
 
     public int getId() {
@@ -63,11 +58,11 @@ public class Filme {
         this.titulo = titulo;
     }
 
-    public String getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
@@ -95,16 +90,6 @@ public class Filme {
         this.quantidade = quantidade;
     }
 
-
-
-    public void incrementaEstoque() {
-        this.quantidade++;
-    }
-
-    public void diminuiEstoque() {
-        this.quantidade--;
-    }
-
     @Override
     public String toString() {
         return "Filme{" + "id=" + id + ", titulo=" + titulo + ", data=" + data + ", nota=" + nota + ", descricao=" + descricao + ", quantidade=" + quantidade + '}';
@@ -113,8 +98,5 @@ public class Filme {
     public void setString(java.sql.Date date) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-
-    
 
 }

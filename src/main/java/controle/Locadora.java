@@ -9,8 +9,8 @@ import Dao.FilmeDao;
 import conexao.Conexao;
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import modelo.Filme;
 
 /**
@@ -18,12 +18,11 @@ import modelo.Filme;
  * @author Weslley Leocádio
  */
 @ManagedBean
-@ViewScoped
+@ApplicationScoped
 public class Locadora {
 
     private Filme filme = new Filme();
     private List<Filme> filmes = new ArrayList<Filme>();
-    private List<Filme> f;
     Conexao conexao = new Conexao();
     FilmeDao filmesDao = new FilmeDao();
 
@@ -34,13 +33,9 @@ public class Locadora {
     }
 
     public void addFilme() {
-        //        if (!filmes.contains(filme)) {
-//          filmes.add(filme);
-//          filme = new Filme();
-//        }10
-//    }
+        
         filmesDao.insertCliente(filme);
-        filmes=filmesDao.listProduto();
+        filmes=filmesDao.listProduto(); 
         filme= new Filme();
 
     }
@@ -72,11 +67,12 @@ public class Locadora {
     }
 
     public void getLIST() {
-        f = filmesDao.listProduto();
-        for (int i = 0; i < f.size(); i++) {
-            System.out.println(f.get(i));
-
-        }
+        filme.setTitulo("");
+        filme.setData(null);
+        filme.setNota(0);
+        filme.setDescricao("");
+        filme.setQuantidade(0);
+       
     }
 
 }
